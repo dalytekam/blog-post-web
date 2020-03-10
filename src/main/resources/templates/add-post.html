@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/665726c0a1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/scss/css/add-post.css" th:href="@{/scss/css/add-post.css}" />
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header__logo">
+                <a th:href="@{/index}">POC</a>
+            </div>
+            <nav class="header__nav">
+                <ul class="header__nav__main">
+                    <li class="header__nav__main__el">
+                        <a th:href="@{/all-posts}">Posts</a>
+                    </li>
+                    <li class="header__nav__main__el">
+                        <a th:href="@{/tags}">Tags</a>
+                    </li>
+                    <li class="header__nav__main__el">
+                        <a th:href="@{/categories}">Categories</a>
+                    </li>
+                    <li class="header__nav__main__el">
+                        <a th:href="@{/authors}">Authors</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header__user">
+                <div class="header__user__pic">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="header__user__username">
+                    <h5>Username</h5>
+                </div>
+                <div class="header__user__logout">
+                    <a>Logout</a>
+                </div>
+            </div>
+
+        </header>
+        <main class="main">
+            <div class="add_post">
+                <h4>New Post</h4>
+                <form th:action="@{/save-post}" method="POST">
+                    <div class="title-post">
+                        <label class="label" for="post-title">Title</label>
+                        <Span class="add-post__title__errors"></Span>
+                        <input type="text" name="postTitle" id="post-title">
+                    </div>
+                    <div class="author-post">
+                        <label class="label" for="post-author">Author</label>
+                        <Span class="add-post__author__errors"></Span>
+
+                        <select id="post-author" name="authorId">
+                            <option th:each="author:${authors}" th:value="${author.authorId}" th:text="${author.authorName}"></option>
+
+                        </select>
+                    </div>
+                    <div class="body-post">
+                        <label class="label" for="post-body">body</label>
+                        <Span class="add-post__body__errors">ddd</Span>
+                        <textarea rows="7" cols="auto" name ="postBody" id="post-body"></textarea>
+                    </div>
+                    <div class="categories-post">
+                        <div>
+                            <label class="label" for="post-categories">Categories</label>
+                        </div>
+                        <div th:each="category:${categories}">
+                            <input  type="checkbox" name="categories" id="post-categories" th:value="${category.categoryId}"/><label th:text="${category.categoryName}">category1</label>
+                        </div>
+
+
+                    </div>
+
+                    <div class="tags-post">
+                        <div>
+                            <label class="label" for="post-tag">Tags</label>
+                        </div>
+                        <div th:each="tag:${tags}">
+                            <input  type="checkbox" name="tags" id="post-tag" th:value="${tag.tagId}"/>
+                            <label th:text="${tag.tagName}">Tag1</label>
+                        </div>
+
+
+
+                    </div>
+                    <div class="button-post">
+                        <button type="submit">Save</button>
+
+                    </div>
+                </form>
+
+            </div>
+        </main>
+        <footer class="footer">
+            <p>copiright &copy 2020 </p>
+            <p>All Rights reserved </p>
+        </footer>
+    </div>
+</body>
+
+</html>

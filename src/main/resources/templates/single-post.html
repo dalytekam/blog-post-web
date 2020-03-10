@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Single-Post</title>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/665726c0a1.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../static/scss/css/single-post.css" th:href="@{/scss/css/single-post.css}" />
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header__logo">
+        <a th:href="@{/index}">POC</a>
+      </div>
+      <nav class="header__nav">
+        <ul class="header__nav__main">
+          <li class="header__nav__main__el">
+            <a th:href="@{/all-posts}">Posts</a>
+          </li>
+          <li class="header__nav__main__el">
+            <a th:href="@{/tags}">Tags</a>
+          </li>
+          <li class="header__nav__main__el">
+            <a th:href="@{/categories}">Categories</a>
+          </li>
+          <li class="header__nav__main__el">
+            <a th:href="@{/authors}">Authors</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header__user">
+        <div class="header__user__pic">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="header__user__username">
+          <h5>Username</h5>
+        </div>
+        <div class="header__user__logout">
+          <a>Logout</a>
+        </div>
+      </div>
+
+    </header>
+    <main class="main">
+      <div class="single-post-container">
+        <section class="single-post-container__edit">
+          <a th:href="@{/all-posts}"><i class="fas fa-arrow-circle-left"></i></a>
+          <a th:disabled="true" href=""><i class="far fa-edit"></i></a>
+          <a th:disabled="true"  href=""><i class="fas fa-trash-alt"></i></a>
+        </section>
+        <section class="single-post-container__title">
+          <h4 th:text="${singlePost.postTitle}">Title of the blog</h4>
+        </section>
+        <section class="single-post-container__body">
+          <p th:text="${singlePost.postBody}">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo
+            rerum sint nulla, dolor in aliquid sunt cumque tenetur ad autem
+            beatae culpa velit odit nobis eius aut doloribus ex mollitia. Ab
+            non accusantium aliquam id eum labore, ipsum deleniti quas? Lorem
+            ipsum, dolor sit amet consectetur adipisicing elit. Sequi, Lorem
+            ipsum dolor sit, amet consectetur adipisicing elit. Labore tempore
+            iure minima earum aperiam reprehenderit libero nobis iste itaque
+            sed consectetur aspernatur deserunt a aliquam fugiat, magnam
+            dignissimos distinctio nisi nesciunt. Sit ducimus quas omnis
+            alias. Quia mollitia doloribus impedit amet, sequi eos dolorum
+            architecto expedita fugiat illo maxime nesciunt rem neque est
+            velit alias voluptatem? Soluta officia neque a.
+          </p>
+        </section>
+        <section class="single-post-container__cat-and-tag">
+          <div class="single-post-container__cat-and-tag__cat">
+            <div class="single-post-container__cat-and-tag__cat__title">
+              <h4>categories</h4>
+            </div>
+            <div class="single-post-container__cat-and-tag__cat__cats">
+              <ul>
+                <li th:each="c:${singlePost.postCategories}" th:text="${c.categoryName}">category1</li>
+              </ul>
+            </div>
+          </div>
+          <div class="single-post-container__cat-and-tag__tag">
+            <div class="single-post-container__cat-and-tag__tag__title">
+              <h4>tags</h4>
+            </div>
+            <div class="single-post-container__cat-and-tag__tag__tags">
+              <ul>
+                <li th:each="t:${singlePost.postTags}" th:text="${t.tagName}">tag1</li>
+
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="single-post-container__auth-and-date">
+          <div class="single-post-container__auth-and-date__pic">
+            <img src="../static/images/imageedit_5_4500663819.png"
+                 th:src="@{/images/imageedit_5_4500663819.png}" alt="author picture" />
+          </div>
+          <div class="single-post-container__auth-and-date__auth">
+            <p>By <span th:text="${singlePost.postAuthor.authorName}">Author</span></p>
+          </div>
+          <div class="single-post-container__auth-and-date__date">
+            <p th:text="${singlePost.postDate}">02/20/2020 09:48 am</p>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="footer">
+      <p>copiright &copy 2020</p>
+      <p>All Rights reserved</p>
+    </footer>
+  </div>
+</body>
+
+</html>

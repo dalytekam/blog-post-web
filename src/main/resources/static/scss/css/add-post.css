@@ -1,0 +1,344 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Noto Sans", "sans-serif";
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  background-color: #e8e8e8;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "header" "main" "footer";
+  -ms-grid-rows: 0.7fr 5fr 1fr;
+      grid-template-rows: 0.7fr 5fr 1fr;
+}
+
+.container .header {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: header;
+  background-color: #004777;
+}
+
+.container .main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: main;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .footer {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: footer;
+}
+
+.container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: -5;
+}
+
+.header {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "logo nav user";
+  padding: 1rem;
+  background-color: rgba(0, 71, 119, 0.1);
+  -ms-grid-columns: 1fr 5fr 1fr;
+      grid-template-columns: 1fr 5fr 1fr;
+  grid-gap: 1rem;
+  color: #d1d1d1;
+  -webkit-box-shadow: 0px 0px 6px 0px white;
+          box-shadow: 0px 0px 6px 0px white;
+}
+
+.header__logo {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: logo;
+  text-align: center;
+  line-height: 5rem;
+  display: -ms-grid;
+  display: grid;
+}
+
+.header__logo a {
+  font-size: 5rem;
+  text-decoration: none;
+  color: #d1d1d1;
+}
+
+.header__nav {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: nav;
+  display: -ms-grid;
+  display: grid;
+}
+
+.header__user {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: user;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3fr;
+      grid-template-columns: 1fr 3fr;
+      grid-template-areas: "pic username" "logout logout";
+  text-align: center;
+  position: relative;
+}
+
+.header__user__pic {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: pic;
+  padding: 0.5rem;
+}
+
+.header__user__username {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: username;
+  text-align: left;
+  padding: 0.5rem;
+}
+
+.header__user__logout {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: logout;
+  padding: 0.5rem;
+}
+
+.header__user__logout a {
+  border: 1px solid white;
+  cursor: pointer;
+  display: block;
+  padding: 0.3rem 1rem;
+  border-radius: 5%;
+  position: absolute;
+  bottom: 0.5rem;
+  left: 2rem;
+  right: 2rem;
+}
+
+.header__user__logout a:hover {
+  background-color: #fff;
+  color: #004777;
+}
+
+.header__nav__main {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+}
+
+.header__nav__main__el {
+  list-style-type: none;
+  text-align: center;
+  line-height: 5rem;
+}
+
+.header__nav__main__el a {
+  text-decoration: none;
+  color: #d1d1d1;
+  height: 5rem;
+  display: block;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 3rem;
+}
+
+.header__nav__main__el a:hover::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+
+.header__nav__main__el a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 0.2rem;
+  background-color: #fff;
+  width: 100%;
+  border: 1px solid white;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transition: -webkit-transform 200ms ease-out;
+  transition: -webkit-transform 200ms ease-out;
+  transition: transform 200ms ease-out;
+  transition: transform 200ms ease-out, -webkit-transform 200ms ease-out;
+}
+
+.footer {
+  position: absolute;
+  display: -ms-grid;
+  display: grid;
+  text-align: center;
+  bottom: 0;
+  left: 40%;
+  right: 40%;
+}
+
+.footer p {
+  color: #000;
+  margin: 0 auto;
+  font-size: 0.8rem;
+}
+
+main {
+  display: -ms-grid;
+  display: grid;
+  margin: 0 auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.add_post h4 {
+  color: #004777;
+  font-variant: small-caps;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+form {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 1rem;
+  width: 25rem;
+}
+
+form .label,
+form span {
+  display: block;
+  text-align: left;
+}
+
+form span {
+  color: red;
+}
+
+form #post-title,
+form #post-author {
+  color: #000;
+  font-size: 1rem;
+  margin: 0 auto;
+  padding: 0.3rem 0.3rem;
+  border-radius: 0.2rem;
+  background-color: white;
+  border: none;
+  width: 100%;
+  display: block;
+  height: 2rem;
+}
+
+form textarea {
+  border-radius: 5px;
+}
+
+form .title-post,
+form .author-post,
+form .body-post,
+form .categories-post,
+form .tags-post,
+form .button-post {
+  display: -ms-grid;
+  display: grid;
+}
+
+form .tags-post {
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  /* & div :nth-child(1) {
+      font-weight: bolder;
+
+
+    }*/
+}
+
+form .tags-post :nth-child(1) {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1/span 3;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+form .tags-post #post-tags,
+form .tags-post label {
+  display: inline;
+}
+
+form .categories-post {
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  /* & div :nth-child(1) {
+      font-weight: bolder;
+    }*/
+}
+
+form .categories-post :nth-child(1) {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1/span 3;
+  padding-bottom: 0.5rem;
+  text-align: left;
+}
+
+form .categories-post #post-categories {
+  display: inline;
+}
+
+form button {
+  padding: 0.4rem;
+  border: 1px solid #006900;
+  color: #004777;
+  border-radius: 5px;
+  font-weight: bolder;
+  -webkit-transition: color 400ms ease-in;
+  transition: color 400ms ease-in;
+  font-size: 1.4rem;
+  width: 6rem;
+  cursor: pointer;
+}
+
+form button:hover {
+  color: #fff;
+  background-color: #006900;
+}
+
+.add_post {
+  border: 0.1rem solid #004777;
+  padding: 2rem 4rem 2rem 4rem;
+  margin-top: 4rem;
+  border-radius: 4px;
+}
+/*# sourceMappingURL=add-post.css.map */

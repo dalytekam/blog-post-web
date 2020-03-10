@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Category</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/665726c0a1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/scss/css/add-category.css" th:href="@{/scss/css/add-category.css}" />
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header__logo">
+                <a th:href="@{/index}">POC</a>
+            </div>
+            <nav class="header__nav">
+                <ul class="header__nav__main">
+                    <li class="header__nav__main__el">
+                        <a th:href="@{/all-posts}">Posts</a>
+                    </li>
+                    <li class="header__nav__main__el">
+                        <a th:href="@{/tags}">Tags</a>
+                    </li>
+                    <li class="header__nav__main__el">
+                        <a th:href="@{/categories}">Categories</a>
+                    </li>
+                    <li class="header__nav__main__el">
+                        <a th:href="@{/authors}">Authors</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header__user">
+                <div class="header__user__pic">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="header__user__username">
+                    <h5>Username</h5>
+                </div>
+                <div class="header__user__logout">
+                    <a>Logout</a>
+                </div>
+            </div>
+
+        </header>
+        <main class="main">
+            <section class="add-category">
+
+                <form th:action="@{/save-category}" method="post" class="add-category__form">
+
+
+                    <div class="add-category__form__search">
+                        <input type="text" placeholder="Enter a Category here" name="categoryName">
+                    </div>
+                    <div class="add-category__form__search-button">
+                        <button type="submit">Save</button>
+                    </div>
+
+                </form>
+
+
+
+            </section>
+        </main>
+        <footer class="footer">
+            <p>copiright &copy 2020 </p>
+            <p>All Rights reserved </p>
+        </footer>
+    </div>
+</body>
+
+</html>

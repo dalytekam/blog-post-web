@@ -1,0 +1,444 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Noto Sans", "sans-serif";
+  box-sizing: border-box;
+}
+
+$textColor3: #fff;
+$textColor2: #000;
+$tagColor: #4c65af;
+$categoryColor: #36c1a4;
+$headerColor: #004777;
+$textColor: #d1d1d1;
+$deleteColor: #fa1606;
+$editColor: #006900;
+$backColor: #206db3;
+$bgColor: #e8e8e8;
+$categoriesColors: (color1: #4c65af,
+  color2: #198acc,
+  color3: #409d9f,
+  color4: #9adcc4,
+  color5: #36c1a4); //* Main container
+
+.container {
+  background-color: $bgColor;
+  background-size: cover;
+  position: relative;
+  //height: 100vh;
+  z-index: 11;
+  display: grid;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  grid-template-rows: 0.7fr 5fr 1fr;
+
+  .header {
+    grid-area: header;
+    background-color: $headerColor;
+  }
+
+  .main {
+    display: grid;
+    grid-area: main;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer {
+    grid-area: footer;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    z-index: -5;
+  }
+}
+
+//* Header
+
+.header {
+  display: grid;
+  grid-template-areas: "logo nav user";
+  padding: 1rem;
+  background-color: rgba($headerColor, 0.1);
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-gap: 1rem;
+  color: $textColor;
+  box-shadow: 0px 0px 6px 0px white;
+}
+
+.header__logo {
+  grid-area: logo;
+  text-align: center;
+  line-height: 5rem;
+  display: grid;
+
+  & a {
+    font-size: 5rem;
+    text-decoration: none;
+    color: $textColor;
+  }
+}
+
+.header__nav {
+  grid-area: nav;
+
+  display: grid;
+}
+
+.header__user {
+  grid-area: user;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas:
+    "pic username"
+    "logout logout";
+  text-align: center;
+
+  position: relative;
+}
+
+.header__user__pic {
+  grid-area: pic;
+  padding: 0.5rem;
+}
+
+.header__user__username {
+  grid-area: username;
+  text-align: left;
+  padding: 0.5rem;
+}
+
+.header__user__logout {
+  grid-area: logout;
+  padding: 0.5rem;
+
+  & a {
+    border: 1px solid white;
+    cursor: pointer;
+    display: block;
+    padding: 0.3rem 1rem;
+    border-radius: 5%;
+    position: absolute;
+    bottom: 0.5rem;
+    left: 2rem;
+    right: 2rem;
+
+    &:hover {
+      background-color: #fff;
+      color: $headerColor;
+    }
+  }
+}
+
+.header__nav__main {
+  display: grid;
+  grid-gap: 2rem;
+  align-items: center;
+  grid-template-columns: repeat(4, 1fr);
+
+  &__el {
+    list-style-type: none;
+
+    text-align: center;
+    line-height: 5rem;
+
+    & a {
+      text-decoration: none;
+      color: $textColor;
+      height: 5rem;
+      display: block;
+
+      position: relative;
+
+      text-transform: uppercase;
+      font-size: 3rem;
+
+      &:hover::after {
+        transform: scaleX(1);
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 0.2rem;
+        background-color: #fff;
+        width: 100%;
+        border: 1px solid white;
+        transform: scaleX(0);
+        transform-origin: left;
+
+        transition: transform 200ms ease-out;
+      }
+    }
+  }
+}
+
+//* Footer
+.footer {
+  position: absolute;
+  display: grid;
+  text-align: center;
+  bottom: 0;
+
+  left: 40%;
+  right: 40%;
+
+  & p {
+    color: $textColor2;
+    margin: 0 auto;
+    font-size: 0.8rem;
+  }
+}
+
+/*.welcome {
+  & h3,
+  h5 {
+    color: $textColor;
+  }
+
+  & h3 {
+    text-transform: uppercase;
+    font-size: 6rem;
+  }
+
+  & h5 {
+    text-transform: uppercase;
+    font-size: 3rem;
+  }
+}*/
+
+.single-post-container {
+  width: 40rem;
+  margin: 3rem auto;
+  color: $textColor;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr auto auto 1fr;
+  grid-template-areas:
+    "single-post-container__edit"
+    "single-post-container__title"
+    "single-post-container__body"
+    "single-post-container__cat-and-tag"
+    "single-post-container__auth-and-date";
+}
+
+.single-post-container__edit {
+  grid-area: single-post-container__edit;
+
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-columns: repeat(6, 1fr);
+
+  & a:nth-child(1) {
+    text-decoration: none;
+    color: lighten($textColor2, 70%);
+    display: inline-block;
+    padding: 0.1rem 2rem;
+    line-height: 1.6rem;
+    font-size: 1rem;
+    height: 1.6rem;
+
+
+    &:hover {
+      color: $backColor;
+
+    }
+  }
+
+  & a:nth-child(3) {
+    grid-column: 7 / span 1;
+
+    text-decoration: none;
+    color: lighten($textColor2, 70%);
+    display: inline-block;
+    padding: 0.1rem 2rem;
+    line-height: 1.6rem;
+    font-size: 1rem;
+    height: 1.6rem;
+
+
+    &:hover {
+      color: $deleteColor;
+
+    }
+  }
+
+  & a:nth-child(2) {
+    grid-column: 6 / span 1;
+
+    text-decoration: none;
+    color: lighten($textColor2, 70%);
+    display: inline-block;
+    padding: 0.1rem 2rem;
+    line-height: 1.6rem;
+    font-size: 1rem;
+    height: 1.6rem;
+
+
+    &:hover {
+      color: $editColor;
+
+    }
+  }
+}
+
+.single-post-container__title {
+  grid-area: single-post-container__title;
+  border-bottom: 0.2rem solid $headerColor;
+  padding: 0.5rem;
+
+  & h4 {
+    text-transform: capitalize;
+    font-weight: bolder;
+    font-size: 1.5rem;
+    color: $textColor2;
+  }
+}
+
+.single-post-container__body {
+  grid-area: single-post-container__body;
+
+  & p {
+    padding: 2rem;
+    line-height: 2rem;
+    text-align: left;
+    color: $textColor2;
+  }
+}
+
+.single-post-container__cat-and-tag {
+  grid-area: single-post-container__cat-and-tag;
+
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "single-post-container__cat-and-tag__cat single-post-container__cat-and-tag__tag";
+}
+
+.single-post-container__cat-and-tag__cat {
+  grid-area: single-post-container__cat-and-tag__cat;
+
+  display: grid;
+  padding: 0.5rem;
+
+  & .single-post-container__cat-and-tag__cat__title {
+    display: grid;
+    justify-content: center;
+    font-variant: small-caps;
+
+    text-align: center;
+
+    padding: 0.2rem;
+
+    & h4 {
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      border: 0.1rem solid $headerColor;
+      background-color: $headerColor;
+      width: 8rem;
+      line-height: 1.4rem;
+      font-size: 1.3rem;
+      height: 1.6rem;
+    }
+  }
+
+  & ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    grid-gap: 0.5rem;
+
+    & li {
+      list-style-type: none;
+      background-color: $categoryColor;
+      border-radius: 5px;
+    }
+  }
+}
+
+.single-post-container__cat-and-tag__tag {
+  grid-area: single-post-container__cat-and-tag__tag;
+
+  display: grid;
+  padding: 0.5rem;
+
+  & .single-post-container__cat-and-tag__tag__title {
+    display: grid;
+    justify-content: center;
+    font-variant: small-caps;
+
+    text-align: center;
+
+    padding: 0.2rem;
+
+    & h4 {
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      border: 0.1rem solid $headerColor;
+      background-color: $headerColor;
+      width: 8rem;
+      line-height: 1.4rem;
+      font-size: 1.3rem;
+      height: 1.6rem;
+    }
+  }
+
+  & ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    grid-gap: 0.5rem;
+
+    & li {
+      list-style-type: none;
+      background-color: $tagColor;
+      border-radius: 5px;
+    }
+  }
+}
+
+.single-post-container__auth-and-date {
+  grid-area: single-post-container__auth-and-date;
+  border-bottom: 0.2rem solid $headerColor;
+  display: grid;
+  grid-template-columns: 1fr 5fr 6fr;
+  justify-content: center;
+  margin-top: 1rem;
+
+  & .single-post-container__auth-and-date__pic {
+    display: grid;
+
+
+    align-items: center;
+    padding: 0.1rem;
+  }
+
+  & .single-post-container__auth-and-date__auth {
+    display: grid;
+    align-items: center;
+    text-align: left;
+    padding: 0.5rem;
+    color: $textColor2;
+    font-weight: bolder;
+  }
+
+  & .single-post-container__auth-and-date__date {
+    display: grid;
+    color: $textColor2;
+    align-items: center;
+    text-align: right;
+    padding: 0.5rem;
+    font-weight: bolder;
+  }
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All Posts</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/665726c0a1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/scss/css/all-posts.css" th:href="@{/scss/css/all-posts.css}" />
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header__logo">
+                <a th:href="@{/index}">POC</a>
+            </div>
+            <nav class="header__nav">
+                <ul class="header__nav__main">
+                    <li class="header__nav__main__el">
+                        <a th:href="@{/all-posts}">Posts</a>
+                    </li>
+                    <li class="header__nav__main__el">
+                        <a th:href="@{/tags}">Tags</a>
+                    </li>
+                    <li class="header__nav__main__el">
+                        <a th:href="@{/categories}">Categories</a>
+                    </li>
+                    <li class="header__nav__main__el">
+                        <a th:href="@{/authors}">Authors</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header__user">
+                <div class="header__user__pic">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="header__user__username">
+                    <h5>Username</h5>
+                </div>
+                <div class="header__user__logout">
+                    <a>Logout</a>
+                </div>
+            </div>
+
+        </header>
+        <main class="main">
+            <section class="all-posts">
+                <div class="all-posts__head">
+                    <div class="all-post__head__new">
+                        <a th:href="@{/add-post}">New Post</a>
+                    </div>
+                    <div class="all-post__head__search">
+                        <input type="text" placeholder="Enter a Title here">
+                    </div>
+                    <div class="all-post__head__search-button">
+                        <a th:href="@{/succes}">Search</a>
+                    </div>
+                </div>
+                <hr>
+                <div class="all-posts__body">
+
+                    <div  th:each="post:${posts}" class="all-posts__body__single-post">
+                        <div class="all-posts__body__single-post__title">
+                            <h4 th:text="${post.postTitle}">Title of the Post</h4>
+                        </div>
+                        <div class="all-posts__body__single-post__partial-body">
+                            <p><a  th:text="${post.postBody.length() > 300} ? ${post.postBody.substring(0,300)+'...'} :${post.postBody}" th:href="@{'/post/'+${post.postId}}">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque
+                                   </a>
+                            </p>
+
+                        </div>
+                        <div class="all-posts__body__single-post__author-and-date">
+                            <div class="all-posts__body__single-post__author-and-date__pic">
+                                <img src="../static/images/imageedit_5_4500663819.png"
+                                    th:src="@{/images/imageedit_5_4500663819.png}" alt="author picture" />
+                            </div>
+                            <div class="all-posts__body__single-post__author-and-date__author">
+                                <p>By <span th:text="${post.postAuthor.authorName}">Author</span></p>
+                            </div>
+                            <div class="all-posts__body__single-post__author-and-date__author__date">
+                                <p th:text="${post.postDate}">02/20/2020 09:48 am</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!---->
+
+
+
+
+                </div>
+            </section>
+        </main>
+        <footer class="footer">
+            <p>Copyright &copy 2020 </p>
+            <p>All Rights reserved </p>
+        </footer>
+    </div>
+</body>
+
+</html>
